@@ -1,0 +1,156 @@
+<!doctype html>  
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	
+	<title>Mobile Site Template</title>
+	
+	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Mobile IE needs ClearType for smoothing fonts -->
+	<meta http-equiv="cleartype" content="on">
+	
+	<!-- StyleSheets under here -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+	<link rel="stylesheet" href="css/style.css"/>	
+	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
+	<script src="js/libs/modernizr.custom.min.js"></script>
+</head>
+<body>
+
+	<div data-role="page" id="home"data-theme="b">
+	
+		<div data-role="header"data-position="fixed" data-theme="b">
+			<img src="images/piz.png" alt="Enter Pizza Order" href="additem.html"/>
+			
+		</div>
+		
+		<div data-role="content">
+			<div data-role="collapsible-set">
+				<div data-role="collapsible" data-collapsed="true">
+					<h3>Customers</h3>
+					<p>customer data</p>
+				</div>	
+				<div data-role="collapsible" data-collapsed="true">
+					<h3>Sizes</h3>
+					<p>Size Data</p>
+					<a href="#sizes">Size Data</a>
+				</div>	
+				<div data-role="collapsible" data-collapsed="true">
+					<h3>Crusts</h3>
+					<p>crust data</p>
+				</div>	
+				<div data-role="collapsible" data-collapsed="true">
+					<h3>Meats Toppings</h3>
+					<p>meat toppings data</p>
+				</div>	
+				<div data-role="collapsible" data-collapsed="true">
+					<h3>Veggie Toppings</h3>
+					<p>veggie topping data data</p>
+				</div>	
+			</div>	
+				
+			
+			
+		</div>
+		
+		<div data-role="footer" data-position="fixed" data-theme="b">	
+			<div data-role="navbar">
+			<ul>
+				<li><a href="additem.html" id="addnew">Create a New Order</a></li>
+				<li><a href="/Users/albenturkey/github/mdv-projects/FS-projects/Project 4/AppA/index.html" id="appA">Application A</a></li>
+			
+		</div>	
+			
+		</div>	
+		
+	
+	</div>
+	<div data-role="page" id="customers" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed"data-theme="b">
+			<h1>Customers</h1>
+		</div>
+		<div data-role="content">
+			<p> Customer names data</p>
+		</div>
+		<div data-role="footer" data-position="fixed"data-theme="b">
+			<h4>Footer</h4>	
+		</div>
+	
+	</div>
+	<div data-role="page" id="sizes" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed"data-theme="b">
+			<h1>Sizes</h1>
+		</div>
+		
+		<div data-role="content"data-theme="b">
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<a href=""data-role="button">Small</a>	
+				</div>	
+				<div class="ui-block-b">
+					<a href=""data-role="button">Medium</a>
+				</div>	
+				<div class="ui-block-c">
+					<a href=""data-role="button">Large</a>
+				</div>	
+			</div>
+		</div>
+		
+		
+		<div data-role="footer" data-position="fixed"data-theme="b">
+			<h4>Footer</h4>	
+		</div>
+	</div>
+	
+	
+	
+	
+	<div data-role="page" id="crusts" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed"data-theme="b">
+			<h1>Crusts</h1>
+		</div>
+		<div data-role="content">
+			<p> crust data</p>
+		</div>
+		<div data-role="footer" data-position="fixed"data-theme="b">
+			<h4>Footer</h4>	
+		</div>
+	
+	</div>
+	<div data-role="page" id="meats" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed"data-theme="b">
+			<h1>Meats</h1>
+		</div>
+		<div data-role="content">
+			<p> Meat topping data"</p>
+		</div>
+		<div data-role="footer" data-position="fixed"data-theme="b">
+			<h4>Footer</h4>	
+		</div>
+	
+	</div>
+	<div data-role="page" id="veggies" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed"data-theme="b">
+			<h1>Veggies</h1>
+		</div>
+		<div data-role="content">
+			<p> Veggie toppings data"</p>
+		</div>
+		<div data-role="footer" data-position="fixed"data-theme="b">
+			<h4>Footer</h4>	
+		</div>
+	
+	</div>
+	
+
+	<!-- JavaScript under here -->
+	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
+	<script typr="text/javascript" src="js/main.js"> </script>
+</body>
+</html>

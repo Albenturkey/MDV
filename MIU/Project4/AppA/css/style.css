@@ -1,0 +1,38 @@
+legend {
+	font-size: 200%;
+	color: #C0C0C0;
+}
+
+label.error {
+	display: block;
+	margin: 10px 0;
+	color: #cc0000;
+}
+#ordererrorslink {
+	display: none;
+	color: red;
+}
+#piz {
+	margin-left: 25%;
+}
+#homepage{
+	background-color:#607B8B;
+}
+#pizForm {
+	margin-left: 40%;
+}
+#cust {
+	background-color: #607B8B;
+}
+#siz {
+	background-color: #607B8B;
+}
+#crst {
+	background-color: #607B8B;
+}
+#mea {
+	background-color: #607B8B;
+}
+#vegg {
+	background-color: #607B8B;
+}
