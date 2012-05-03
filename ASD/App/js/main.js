@@ -6,7 +6,7 @@ $(document).ready(function(){
 		meatValue,
 		veggieValue,
 		mVal,
-		errMsg = gEID("errors")
+		errMsg = $("#errors")
 	;
 
 	function gEID(x){
@@ -31,8 +31,11 @@ $(document).ready(function(){
 			}
 		}
 	}	
+	
+		
+	
 	function getMeats(){
-		var x = document.forms[0].meat;
+		var x = $("input"[name=meat])
 		mVal = new Array();
 		for(i = 0; i < x.length; i++){
 			if (x[i].checked){
@@ -56,20 +59,20 @@ $(document).ready(function(){
 	function toggleControls(n){
 		switch(n){
 			case "on" :
-				gEID("order").style.display = "none";
-				gEID("clear").style.display = "inline";
-				gEID("display").style.display = "none";
-				gEID("github").style.display = "none";
-				gEID("appB").style.display = "none";
+				$("#order").css("display", "none");
+				$("#clear").css("display", "inline");
+				$("#display").css("display", "none");
+				$("#github").css("display", "none");
+				$("#appB").css("display", "none");
 
 				//gEID("addNew").style.display = "inline";
 				break;
 			case "off":
-				gEID("order").style.display = "block";
-				gEID("clear").style.display = "inline";
-				gEID("display").style.display = "inline";
+				$("#order").css("display", "block");
+				$("#clear").css("display", "inline");
+				$("#display").css("display", "inline");
 				//gEID("addNew").style.display = "none";
-				gEID("items").style.display =  "none";
+				$("#items").css("display",  "none");
 				break;
 			default:
 				return false;
@@ -85,12 +88,12 @@ $(document).ready(function(){
 		getMeats();
 		getVeggieCheckboxValue();
 		var item    			= {};
-			  item.fname		= ["First Name: " , gEID("fname").value];
-		      item.lname		= ["Last Name: "  , gEID("lname").value];
-		      item.Address	= ["Address: " , gEID("Address").value];
-			  item.date		= ["Date: " , gEID("date").value];
-			  item.number	= ["Number of Pizzas: " , gEID("number").value];
-			  item.select		= ["Size: " ,gEID("size").value];
+			  item.fname		= ["First Name: " , $("#fname").val];
+		      item.lname		= ["Last Name: "  , $("#lname").val];
+		      item.Address	= ["Address: " , $("#Address").val];
+			  item.date		= ["Date: " , $("#date").val];
+			  item.number	= ["Number of Pizzas: " , $("#number").val];
+			  item.select		= ["Size: " ,gEID("#size").val];
 			  item.crust	= ["Crust Type: " , crustValue];
 			  item.meat		= ["Meat Toppings:" , mVal];
 			  item.veggie		= ["Veggie Toppings: " , veggieValue];
@@ -108,7 +111,7 @@ $(document).ready(function(){
 		var makeList = document.createElement("ul");
 		makeDiv.appendChild(makeList);
 		document.body.appendChild(makeDiv);
-		gEID("items").style.display =  "block";
+		$("#items").css("display","block");
 		for(var i=0, len = localStorage.length; i<len;i++){
 			var makeLi = document.createElement("li");
 			var linksLi = document.createElement ("li");
@@ -134,7 +137,7 @@ $(document).ready(function(){
 	editLink.href = "#";
 	editLink.key = key;
 	var editText = "Edit Order";
-	editLink.addEventListener("click" , editItem);
+	
 	editLink.innerHTML = editText;
 	linksLi.appendChild(editLink);
 	// add line break	
@@ -158,25 +161,14 @@ $(document).ready(function(){
 		var value = localStorage.getItem(this.key);
 		var item = JSON.parse(value);
 		toggleControls("off");	
-		gEID("fname").value = item.fname[1];
-		gEID("lname").value = item.lname[1];
-		gEID("address").value = item.Address[1];
-		gEID("date").value = item.date[1];
-		gEID("number").value = item.number[1];
+		$("#fname").val = item.fname[1];
+		$("#lname").val = item.lname[1];
+		$("#address").val = item.Address[1];
+		$("#date").val = item.date[1];
+		$("#number").val = item.number[1];
 	// radio button 	
-		var radios = document.forms[0].crust;
-		for (var i = 0; i < radios.length; i++){
-			if (radios[i].value === "thick" && item.crust[1] === "thick"){
-				radios[i].setAttribute("checked" , "checked");
-			}
-			if (radios[i].value === "thin" && item.crust[1] === "thin"){
-				radios[i].setAttribute("checked" , "checked");
-			}
-			if (radios[i].value === "pan" && item.crust[1] === "pan"){
-				radios[i].setAttribute("checked" , "checked");
-			}	
-		}
-		gEID("size").value = item.select[1];
+		$("input:radio[crust]:checked").val();
+		$("#size").val = item.select[1];
 
 	// checkbox saving	
 		function checkTopping(id,type){
@@ -199,10 +191,10 @@ $(document).ready(function(){
 		checkTopping("go" ,/Green Olives/g);
 		var checkM = document.forms[0].meat;
 	// Remove initial listener from the imputable
-		order.removeEventListener("click" , storeData);
+		removeEventListener("click" , storeData);
 		 gEID("submit").value = "Edit Order";
 		 var editSubmit = gEID("submit");
-		 editSubmit.addEventListener("click" , validate);
+		 editSubmit.addEventListener("click" , valid);
 		 editSubmit.key = this.key;
 			
 	}		
@@ -216,57 +208,59 @@ $(document).ready(function(){
 			alert("Order was not deleted.");
 		}		
 }
+
+
 	function valid(e){
-		var getfname = gEID("fname");
-		var getlname = gEID("lname");
-		var getAddress = gEID("Address");
-		var getdate = gEID("date");
-		var getnumber = gEID("number");
-		var getselect = gEID("size");
+		var getfname = $("#fname");
+		var getlname = $("#lname");
+		var getAddress = $("#Address");
+		var getdate = $("#date");
+		var getnumber = $("#number");
+		var getselect = $("#size");
 		
 		
 	// reset errors
 		errMsg.innerHTML = "" ;
-		getfname.style.border = "1px solid black";
-		getlname.style.border = "1px solid black";
-		getAddress.style.border = "1px solid black";
-		getdate.style.border = "1px solid black";
-		getnumber.style.border = "1px solid black";
-		getselect.style.border = "1px solid black";
+		$("#fname").css("border", "1px");
+		$("#lname").css("border", "1px");
+		$("#Address").css("border", "1px");
+		$("#date").css("border", "1px");
+		$("#number").css("border", "1px");
+		$("#size").css("border", "1px");
 		
 		var messageAry = [];	
 		
 	// First Name Validation 
-		if (getfname.value === ""){
+		if ($("#fname").val === ""){
 			var fnameError = "Please enter a first name.";
 			getfname.style.border = "1px solid red";
 			messageAry.push(fnameError);	
 	}	
 	// Last Name Validation
-		if (getlname.value === ""){
+		if ($("#lname").val === ""){
 			var lnameError = "Please enter a last name.";
 			getlname.style.border = "1px solid red";
 			messageAry.push(lnameError);	
 	}
 	// Address Validation
-		if (getAddress.value === ""){
+		if ($("#Address").val === ""){
 			var addressError = "Please enter an Adddress.";
 			getAddress.style.border = "1px solid red";
 			messageAry.push(addressError);
 	}
 	// Date Validation
-		if (getdate.value === ""){
+		if ($("#date").val === ""){
 			var dateError = "Please enter an order date.";
 			getdate.style.border = "1px solid red";
 			messageAry.push(dateError);
 		}
 	// Number of Pizzas Validation
-		if (getnumber.value < 1 ){
+		if ($("#number").val < 1 ){
 			var numbErerror = "Please enter the number of this type of pizza.";
 			messageAry.push(numbErerror);	
 		}
 	//Crust size Validation
-		if (getselect.value === "--Choose the size of your pizza--"){
+		if ($("#size").val === "--Choose the size of your pizza--"){
 			var selectError = "Please choose a size.";
 			getselect.style.border = "1px solid red";
 			
@@ -303,11 +297,9 @@ $(document).ready(function(){
 			parsePizzaForm(data);
 		}
 	});
-	var displayLink = gEID("display");
-		displayLink.addEventListener("click" , getData);
-	var clearLink = gEID("clear");
-		clearLink.addEventListener("click" , clearLocal);
-	var order = gEID("submit");
-		order.addEventListener("click" valid);
+	$("#display").bind("click",getData);
+	$("#clear").bind("click",clearLocal);
+	$("#submit").bind("click",valid);
 	
+	console.log($("#crust"))
 });	
