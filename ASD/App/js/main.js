@@ -31,9 +31,6 @@ $(document).ready(function(){
 			}
 		}
 	}	
-	
-		
-	
 	function getMeats(){
 		var x = $("input"[name=meat])
 		mVal = new Array();
@@ -208,8 +205,6 @@ $(document).ready(function(){
 			alert("Order was not deleted.");
 		}		
 }
-
-
 	function valid(e){
 		var getfname = $("#fname");
 		var getlname = $("#lname");
@@ -301,5 +296,5 @@ $(document).ready(function(){
 	$("#clear").bind("click",clearLocal);
 	$("#submit").bind("click",valid);
 	
-	console.log($("#crust"))
+	
 });	
