@@ -1,36 +1,28 @@
-// Alan Sherek
-// Project 4
-// VFW 0212
-// Javascript
+$(document).ready(function(){
 
+	var psform = $('#pizzasalesform'),
+		ordererrorslink = $('#ordererrorslink'),
+		crustValue,
+		meatValue,
+		veggieValue,
+		mVal,
+		errMsg = gEID("errors")
+	;
 
-// wait till the dom is ready
-window.addEventListener("DOMContentLoaded" , function(){
-
-// Get element by id function
-	function $(x){
+	function gEID(x){
 		var theElement = document.getElementById(x);
 		return theElement;
 	}
-	
-
-//Size selector
-	/*function makeCats(){
-		var formTag = document.getElementsByTagName("form"),
-			  selectLi = $("select"),
-			  makeSelect = document.createElement("select");
-			  makeSelect.setAttribute("id" , "size");
-		for(var i=0 , j=sizeVal.length; i<j ; i++){
-			  var makeOption = document.createElement("option");
-			  var optText = sizeVal[i];
-			  makeOption.setAttribute("value" , optText);
-			  makeOption.innerHTML = optText;	  	
-			  makeSelect.appendChild(makeOption);
-		}
-		selectLi.appendChild(makeSelect);
-	}*/
-	
-// Find value of radio button
+	function clearLocal(){
+		if (localStorage.length === 0){
+			alert("There Are No Orders.")
+		}else{
+			localStorage.clear();
+			alert("All Orders Have Been Deleted.")
+			window.location.reload();
+			return false;
+			}
+	}
 	function getSelectedRadio(){
 		var radio = document.forms[0].crust;
 		for (var i=0 ; i < radio.length; i++){
@@ -39,9 +31,6 @@ window.addEventListener("DOMContentLoaded" , function(){
 			}
 		}
 	}	
-	
-// Find Value of checkboxes
-
 	function getMeats(){
 		var x = document.forms[0].meat;
 		mVal = new Array();
@@ -52,8 +41,7 @@ window.addEventListener("DOMContentLoaded" , function(){
 			}
 		}
 		return mVal;
-	}	
-
+	}
 	function getVeggieCheckboxValue(){
 		var vToppings = document.forms[0].veggie;
 		vVal = new Array();
@@ -65,29 +53,28 @@ window.addEventListener("DOMContentLoaded" , function(){
 		}	
 		return vVal;
 	}
-	
-// Toggle controls function	
 	function toggleControls(n){
 		switch(n){
 			case "on" :
-				$("order").style.display = "none";
-				$("clear").style.display = "inline";
-				$("display").style.display = "none";
-				$("addNew").style.display = "inline";
+				gEID("order").style.display = "none";
+				gEID("clear").style.display = "inline";
+				gEID("display").style.display = "none";
+				gEID("github").style.display = "none";
+				gEID("appB").style.display = "none";
+
+				//gEID("addNew").style.display = "inline";
 				break;
 			case "off":
-				$("order").style.display = "block";
-				$("clear").style.display = "inline";
-				$("display").style.display = "inline";
-				$("addNew").style.display = "none";
-				$("items").style.display =  "none";
+				gEID("order").style.display = "block";
+				gEID("clear").style.display = "inline";
+				gEID("display").style.display = "inline";
+				//gEID("addNew").style.display = "none";
+				gEID("items").style.display =  "none";
 				break;
 			default:
 				return false;
 		}
-	}				
-	
-// Store Data Function
+	}		
 	function storeData(key){
 		if(!key){
 			var id					= Math.floor(Math.random()*100000001);
@@ -98,20 +85,18 @@ window.addEventListener("DOMContentLoaded" , function(){
 		getMeats();
 		getVeggieCheckboxValue();
 		var item    			= {};
-			  item.fname		= ["First Name: " , $("fname").value];
-		      item.lname		= ["Last Name: "  , $("lname").value];
-		      item.Address	= ["Address: " , $("Address").value];
-			  item.date		= ["Date: " , $("date").value];
-			  item.number	= ["Number of Pizzas: " , $("number").value];
-			  item.select		= ["Size: " ,$("size").value];
+			  item.fname		= ["First Name: " , gEID("fname").value];
+		      item.lname		= ["Last Name: "  , gEID("lname").value];
+		      item.Address	= ["Address: " , gEID("Address").value];
+			  item.date		= ["Date: " , gEID("date").value];
+			  item.number	= ["Number of Pizzas: " , gEID("number").value];
+			  item.select		= ["Size: " ,gEID("size").value];
 			  item.crust	= ["Crust Type: " , crustValue];
 			  item.meat		= ["Meat Toppings:" , mVal];
 			  item.veggie		= ["Veggie Toppings: " , veggieValue];
 		localStorage.setItem(id,  JSON.stringify(item));
 		alert("Order Saved");
 	}	
-	
-// Get data function		
 	function getData(){
 		toggleControls("on");
 		if (localStorage.length ===0){
@@ -123,7 +108,7 @@ window.addEventListener("DOMContentLoaded" , function(){
 		var makeList = document.createElement("ul");
 		makeDiv.appendChild(makeList);
 		document.body.appendChild(makeDiv);
-		$("items").style.display =  "block";
+		gEID("items").style.display =  "block";
 		for(var i=0, len = localStorage.length; i<len;i++){
 			var makeLi = document.createElement("li");
 			var linksLi = document.createElement ("li");
@@ -133,7 +118,7 @@ window.addEventListener("DOMContentLoaded" , function(){
 			var obj = JSON.parse(value);
 			var makeSubList = document.createElement("ul");
 			makeLi.appendChild(makeSubList);
-			getImage(obj.select[1], makeSubList);
+		//	getImage(obj.select[1], makeSubList);
 			for(var p in obj){
 				var makeSubLi = document.createElement("li");
 				makeSubList.appendChild(makeSubLi);
@@ -144,52 +129,40 @@ window.addEventListener("DOMContentLoaded" , function(){
 			makeItemLinks(localStorage.key(i), linksLi); 
 		}
 	}
-	
-	function getImage(imgName,makeSubList){
-		var imageLi = document.createElement("li");
-		makeSubList.appendChild(imageLi);
-		var newImg =  document.createElement("img")
-		var setSrc = newImg.setAttribute("src" , "images/" + imgName + ".png");
-		imageLi.appendChild(newImg);
-	}
-	
-	// Auto Populate local storage
-	function autoFillData(){
-		for(var n in json){
-			var id = Math.floor(Math.random()*100000001);
-			localStorage.setItem(id, JSON.stringify(json[n]));
-		}
-	}
-	
 	function makeItemLinks(key, linksLi){
-		var editLink = document.createElement("a");
-		editLink.href = "#";
-		editLink.key = key;
-		var editText = "Edit Order";
-		editLink.addEventListener("click" , editItem);
-		editLink.innerHTML = editText;
-		linksLi.appendChild(editLink);
+	var editLink = document.createElement("a");
+	editLink.href = "#";
+	editLink.key = key;
+	var editText = "Edit Order";
+	editLink.addEventListener("click" , editItem);
+	editLink.innerHTML = editText;
+	linksLi.appendChild(editLink);
 	// add line break	
-		var breakTag = document.createElement("br");
-		linksLi.appendChild(breakTag);
-		var deleteLink = document.createElement("a");
-		deleteLink.href = "#";
-		deleteLink.key = key;
-		var deleteText = "Delete Order";
-		deleteLink.addEventListener("click" , deleteItem);
-		deleteLink.innerHTML = deleteText;
-		linksLi.appendChild(deleteLink);	
+	var breakTag = document.createElement("br");
+	linksLi.appendChild(breakTag);
+	var deleteLink = document.createElement("a");
+	deleteLink.href = "#";
+	deleteLink.key = key;
+	var deleteText = "Delete Order";
+	deleteLink.addEventListener("click" , deleteItem);
+	deleteLink.innerHTML = deleteText;
+	linksLi.appendChild(deleteLink);	
+}
+	function autoFillData(){
+	for(var n in json){
+		var id = Math.floor(Math.random()*100000001);
+		localStorage.setItem(id, JSON.stringify(json[n]));
 	}
-	
+}
 	function editItem(){
 		var value = localStorage.getItem(this.key);
 		var item = JSON.parse(value);
 		toggleControls("off");	
-		$("fname").value = item.fname[1];
-		$("lname").value = item.lname[1];
-		$("Address").value = item.Address[1];
-		$("date").value = item.date[1];
-		$("number").value = item.number[1];
+		gEID("fname").value = item.fname[1];
+		gEID("lname").value = item.lname[1];
+		gEID("address").value = item.Address[1];
+		gEID("date").value = item.date[1];
+		gEID("number").value = item.number[1];
 	// radio button 	
 		var radios = document.forms[0].crust;
 		for (var i = 0; i < radios.length; i++){
@@ -203,7 +176,7 @@ window.addEventListener("DOMContentLoaded" , function(){
 				radios[i].setAttribute("checked" , "checked");
 			}	
 		}
-		$("size").value = item.select[1];
+		gEID("size").value = item.select[1];
 
 	// checkbox saving	
 		function checkTopping(id,type){
@@ -212,7 +185,7 @@ window.addEventListener("DOMContentLoaded" , function(){
 			var mResult = type.test(checkM);
 			var vResult = type.test(checkV);
 			if(mResult === true || vResult === true){
-			$(id).setAttribute("checked", "checked");
+			gEID(id).setAttribute("checked", "checked");
 			}
 		}
 		checkTopping("sausage",/Sausage/g);
@@ -227,13 +200,12 @@ window.addEventListener("DOMContentLoaded" , function(){
 		var checkM = document.forms[0].meat;
 	// Remove initial listener from the imputable
 		order.removeEventListener("click" , storeData);
-		 $("submit").value = "Edit Order";
-		 var editSubmit = $("submit");
+		 gEID("submit").value = "Edit Order";
+		 var editSubmit = gEID("submit");
 		 editSubmit.addEventListener("click" , validate);
 		 editSubmit.key = this.key;
 			
 	}		
-	
 	function deleteItem(){
 		var ask = confirm("Are you sure you want to delete this order");
 		if(ask){
@@ -243,27 +215,14 @@ window.addEventListener("DOMContentLoaded" , function(){
 		}else{
 			alert("Order was not deleted.");
 		}		
-	}
-			  	
-// Clear Data functin	
-	function clearLocal(){
-		if (localStorage.length === 0){
-			alert("There Are No Orders.")
-		}else{
-			localStorage.clear();
-			alert("All Orders Have Been Deleted.")
-			window.location.reload();
-			return false;
-			}
-	}
-	
-	function validate(e){
-		var getfname = $("fname");
-		var getlname = $("lname");
-		var getAddress = $("Address");
-		var getdate = $("date");
-		var getnumber = $("number");
-		var getselect = $("size");
+}
+	function valid(e){
+		var getfname = gEID("fname");
+		var getlname = gEID("lname");
+		var getAddress = gEID("Address");
+		var getdate = gEID("date");
+		var getnumber = gEID("number");
+		var getselect = gEID("size");
 		
 		
 	// reset errors
@@ -327,26 +286,28 @@ window.addEventListener("DOMContentLoaded" , function(){
 			storeData(this.key);
 		}					
 	}
-// Variables
-	var sizeVal = ["--Choose the size of your pizza--","Large" , "Medium" , "Small"],
-		  crustValue,
-		  meatValue,
-		  veggieValue,
-		  mVal,
-		  errMsg = $("errors")
-	 ; 
-
-// Set link & submit click events
-	var displayLink = $("display");
-//	displayLink.addEventListener("click" , getData);
-	var clearLink = $("clear");
-	//clearLink.addEventListener("click" , clearLocal);
-	var order = $("submit");
-//	order.addEventListener("click" , validate);
+	psform.validate({
+		invalidHandler: function(form, validator){
+			ordererrorslink.click();
+			var html = '';
+			for (var key in validator.submitted){
+				var label = $('label[for^="'+ key +'"]').not('[generated]');
+				var legend = label.closest('fieldset').find('.ui-controlgroup-label');
+				var fieldName = legend.length ? legend.text() : label.text();
+				html += '<li>'+ fieldName +'</li>';
+			};
+			$("#ordererrors ul").html(html);
+		},
+		submitHandler:	function(){
+			var data = psform.serializeArray();
+			parsePizzaForm(data);
+		}
+	});
+	var displayLink = gEID("display");
+		displayLink.addEventListener("click" , getData);
+	var clearLink = gEID("clear");
+		clearLink.addEventListener("click" , clearLocal);
+	var order = gEID("submit");
+		order.addEventListener("click" valid);
 	
-});
-
-
-
-
-
+});	
