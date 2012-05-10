@@ -22,65 +22,60 @@
 
 </head>
 <body>
-
 	<div data-role="page" id="home">
-	
-		<div data-role="header"data-position="fixed" id="head" data-theme="b">
-			<img src="images/piz.png" id="piz"/>
-			<div data-role="navbar" data-inste="true"data-theme="b">
+		<div data-role="header"data-position="fixed"data-theme="b">
+			<h1>Pizza Sales</h1>
+			<div data-role="navbar" data-theme="b">
 				<ul>
-					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppA/" id="home">Home</a></li>
-					<li><a href="#recent" id="recent">Recent Orders</a></li>
-					<li><a href="#order" id="addnew">Create a New Order</a></li>
-
+					<li><a href="#storage" id="homelink">Saved Orders</a></li>
+					<li><a href="#recentData" id="recent">Recent Orders</a></li>
+					<li><a href="#" id="addnew">Create a New Order</a></li>
 				</ul>
-			</div>		
+			</div>
 		</div>
-		
 		<div data-role="content" id="homepage">
-			<ul data-role="listview" data-inset="true" data-filter="true"data-theme="c">
+			<ul data-role="listview"  data-theme="c" id="homemenu">
 				<li>
 					<a href="#customers" id="custData">
-						<img src="images/customer.png"/>
-						<h3>Customers</h3>	
+					<img src="images/customer.png"/>
+					<h3>Customers</h3>
 					</a>
 				</li>
 				<li>
-					<a href="#sizes">
-						<img src="images/size.png"/>
-						<h3>Sizes</h3>
+					<a href="#sizes" id = "sizeData">
+					<img src="images/size.png"/>
+					<h3>Sizes</h3>
 					</a>
 				</li>
 				<li>
-					<a href="#crusts">
-						<img src="images/crust.png"/>
-						<h3>Crusts</h3>
+					<a href="#crusts" id= "crustData">
+					<img src="images/crust.png"/>
+					<h3>Crusts</h3>
 					</a>
 				</li>
 				<li>
-					<a href="#meats">
-						<img src="images/meat.png"/>
-						<h3>Meat Toppoings</h3>
+					<a href="#meats" id= "meatData">
+					<img src="images/meat.png"/>
+					<h3>Meats</h3>
 					</a>
 				</li>
 				<li>
-					<a href="#veggies">
-						<img src="images/veggie.png"/>
-						<h3>Veggie Toppings</h3>
+					<a href="#veggies" id="veggieData">
+					<img src="images/veggie.png"/>
+					<h3>Veggies</h3>
 					</a>
 				</li>
 			</ul>
-		</div>  
+		
+		</div>
 		<div data-role="footer" data-position="fixed" data-theme="b"">		
 			<div data-role="navbar">
 				<ul>
 					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppB/" id="appB">Application B</a></li>
 					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppA/" id="github">gh-pages</a></li>
 				</ul>	
-			</div>		
+			</div>	
 		</div>	
-		
-	<!-- Customers Page-->
 	</div>
 	<div data-role="page" id="customers" data-add-back-btn="true">
 		<div data-role="header" data-position="fixed"data-theme="b">
@@ -94,8 +89,8 @@
 			</div>
 		</div>
 		<div data-role="content" id="cust">
-		<img src="/Users/albenturkey/github/mdv-projects/FS-projects/Project 4/AppA/images/underconstruction.png"/>
-		
+			<ul data-role="listview" id="customerList">
+			</ul>		
 		</div>
 		<div data-role="footer" data-position="fixed"data-theme="b">
 			<div data-role="navbar">
@@ -106,12 +101,10 @@
 				</ul>	
 			</div>			
 		</div>
-	
-	</div>
-	<!-- Sizes Page-->
+		</div>
 	<div data-role="page" id="sizes" data-add-back-btn="true">
 		<div data-role="header" data-position="fixed"data-theme="b">
-			 <img src="images/piz1.png" id="pizForm"/>
+			<img src="images/piz1.png" id="pizForm"/>
 			<h1>Sizes</h1>
 			<div data-role="navbar">
 				<ul>
@@ -120,23 +113,20 @@
 				</ul>
 			</div>
 		</div>
-		<div data-role="content" id="siz">
-			<p> Customer names data</p>
-			<img src="/Users/albenturkey/github/mdv-projects/FS-projects/Project 4/AppA/images/underconstruction.png"/>
-
+		<div data-role="content" id="size">
+			<ul data-role="listview" id="sizeList">
+			</ul>		
 		</div>
 		<div data-role="footer" data-position="fixed"data-theme="b">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="/Users/albenturkey/Desktop/MIU/sherek_alan_project2/AppA/additem.html" id="addnew">Create a New Order</a></li>
-					<li><a href="file://localhost/Users/albenturkey/Desktop/MIU/sherek_alan_project2/AppB/index.html" id="appB">Application B</a></li>
-					<li><a href="http://Albenturkey.github.com/FS-projects/AppA/index.html" id="github">gh-pages</a></li>
+					<li><a href="#order" id="addnew">Create a New Order</a></li>
+					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppB/" id="appB">Application B</a></li>
+					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppA/" id="github">gh-pages</a></li>
 				</ul>	
 			</div>			
 		</div>
 	</div>
-	
-	<!-- Crusts Page-->
 	<div data-role="page" id="crusts" data-add-back-btn="true">
 		<div data-role="header" data-position="fixed"data-theme="b">
 			<img src="images/piz1.png" id="pizForm"/>
@@ -148,23 +138,20 @@
 				</ul>
 			</div>
 		</div>
-		<div data-role="content" id="crst">
-			<p> crust data</p>
-			<img src="/Users/albenturkey/github/mdv-projects/FS-projects/Project 4/AppA/images/underconstruction.png"/>
-
+		<div data-role="content" id="crust">
+			<ul data-role="listview" id="crustList">
+			</ul>		
 		</div>
 		<div data-role="footer" data-position="fixed"data-theme="b">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="/Users/albenturkey/Desktop/MIU/sherek_alan_project2/AppA/additem.html" id="addnew">Create a New Order</a></li>
-					<li><a href="file://localhost/Users/albenturkey/Desktop/MIU/sherek_alan_project2/AppB/index.html" id="appB">Application B</a></li>
-					<li><a href="http://Albenturkey.github.com/FS-projects/AppA/index.html" id="github">gh-pages</a></li>
+					<li><a href="#order" id="addnew">Create a New Order</a></li>
+					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppB/" id="appB">Application B</a></li>
+					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppA/" id="github">gh-pages</a></li>
 				</ul>	
 			</div>			
 		</div>
 	</div>
-	
-	<!-- Meats Page-->
 	<div data-role="page" id="meats" data-add-back-btn="true">
 		<div data-role="header" data-position="fixed"data-theme="b">
 			<img src="images/piz1.png" id="pizForm"/>
@@ -176,23 +163,20 @@
 				</ul>
 			</div>
 		</div>
-		<div data-role="content" id ="mea">
-			<p> Meat topping data"</p>
-			<img src="/Users/albenturkey/github/mdv-projects/FS-projects/Project 4/AppA/images/underconstruction.png"/>
-
+		<div data-role="content" id="meat">
+			<ul data-role="listview" id="meatList">
+			</ul>		
 		</div>
 		<div data-role="footer" data-position="fixed"data-theme="b">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="/Users/albenturkey/Desktop/MIU/sherek_alan_project2/AppA/additem.html" id="addnew">Create a New Order</a></li>
-					<li><a href="file://localhost/Users/albenturkey/Desktop/MIU/sherek_alan_project2/AppB/index.html" id="appB">Application B</a></li>
-					<li><a href="http://Albenturkey.github.com/FS-projects/AppA/index.html" id="github">gh-pages</a></li>
+					<li><a href="#order" id="addnew">Create a New Order</a></li>
+					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppB/" id="appB">Application B</a></li>
+					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppA/" id="github">gh-pages</a></li>
 				</ul>	
 			</div>			
 		</div>
 	</div>
-	
-	<!-- Veggies Page-->
 	<div data-role="page" id="veggies" data-add-back-btn="true">
 		<div data-role="header" data-position="fixed"data-theme="b">
 			<img src="images/piz1.png" id="pizForm"/>
@@ -203,31 +187,28 @@
 					<li><a href ="#order">Create New Order</a></li>
 				</ul>
 			</div>
-			<img src="/Users/albenturkey/github/mdv-projects/FS-projects/Project 4/AppA/images/underconstruction.png"/>
-
 		</div>
-		<div data-role="content" id="vegg>
-			<p> Veggie toppings data"</p>
+		<div data-role="content" id="veg">
+			<ul data-role="listview" id="veggieList">
+			</ul>		
 		</div>
 		<div data-role="footer" data-position="fixed"data-theme="b">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="/Users/albenturkey/Desktop/MIU/sherek_alan_project2/AppA/additem.html" id="addnew">Create a New Order</a></li>
-					<li><a href="file://localhost/Users/albenturkey/Desktop/MIU/sherek_alan_project2/AppB/index.html" id="appB">Application B</a></li>
-					<li><a href="http://Albenturkey.github.com/FS-projects/AppA/index.html" id="github">gh-pages</a></li>
+					<li><a href="#order" id="addnew">Create a New Order</a></li>
+					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppB/" id="appB">Application B</a></li>
+					<li><a href="http://albenturkey.github.com/MDV/MIU/Project4/AppA/" id="github">gh-pages</a></li>
 				</ul>	
 			</div>			
 		</div>
 	</div>
-	
-	<!-- Recent Orders Page -->
-	<div data-role="page" id="recent" data-add-back-btn="true">
+		<div data-role="page" id="recentData" data-add-back-btn="true">
 		<div data-role="header" data-position="fixed"data-theme="b">
 			<img src="images/piz1.png" id="pizForm"/>
 			<h1>Recent Orders</h1>
 		</div>
 		<div data-role="content">
-			<ul data-role="listview"data-theme="b">
+			<ul data-role="listview"data-theme="b" id="recentList">
 				<li>
 					<h3>Donald Duck</h3>
 					<p>Large thick crust Peperoni,Mushrooms,onions</p>
@@ -262,146 +243,14 @@
 			</div>		
 		</div>
 	</div>
-	
-	<!-- Enter an Order Page-->
-	
-	<div data-role="page" id="order" data-add-back-btn="true">
-	
-		<div data-role="header" data-position="fixed" data-theme="b">
-			
-			<img src="images/piz1.png" id="pizForm"/>
-			<h1>Enter An Order</h1>
-			
-			<div data-role="navbar" data-inste="true"data-theme="b">
-				<ul>
-					<li><a href="index.html" id="home">Home</a></li>
-					<li><a href="#" id="clear">Clear Orders</a></li>
-					<li><a href="#" id="display">Display Orders</a></li>
-				</ul>
-			</div>		
-		</div>
-		
-	
-		<div data-role="content">
-		
-			<form action="" method="post" id="pizzasalesform">
-			
-				<div data-role ="fieldcontain">
-					<label for="fname">First Name</label>
-					<input type="text" name="fname" id="fname" placeholder="Your First Name"class="required" data-theme="d" />
-				</div>	
-				
-				<div data-role="fieldcontain">	
-					<label for="lname">Last Name</label>
-					<input type="text" name="lname" id="lname" placeholder="Your Last Name"class="required" data-theme="d" />
-				</div>	
-				
-				<div data-role="fieldcontain">	
-					<label for="address">Address</label>
-					<textarea name="address" id="address" placeholder="Your Address"class="required"data-theme="d" ></textarea>
-				</div>
-				
-				<div data-role="fieldcontain">
-					<label for="date">Date</label>
-					<input type="text" name="date" id="date" type="date" placeholder="mm/dd/yyyy"/>	
-				</div>
-					
-				<div data-role="fieldcontain">
-					<label for="number">Number of Pizzas</label>
-					<input type="range" name="number" id="number" value="1" min="1" max="10" class="required"/>
-				</div>
-				
-				<div data-role="fieldcontain">
-					<label for="size">Size</label>
-					<select name="size" id="size" data-native-menu="false"data-theme="b" class="required">
-						<option data-placeholder="true" value>Please Select A Size</option>
-						<option value="large">Large</option>
-						<option value="medium">Medium</option>
-						<option value="small">Small</option>
-					</select>
-				</div>	
-					
-				<div data-role="fieldcontain">
-					<fieldset data-role="controlgroup">
-						<legend>Crust</legend>
-						<input type="radio" value="thick" name="crust" id="thick" data-theme="b" class="required"/>
-						<label for="thick">Thick Crust</label>
-						<input type="radio" value="thin" name="crust" id="thin" data-theme="b"/>
-						<label for="thin">Thin Crust</label>
-						<input type="radio" value="pan" name="crust" id="pan"data-theme="b"/>
-						<label for="pan">Pan</label>
-					</fieldset>
-				</div>
-					
-				<div data-role="fieldcontain">
-					<fieldset data-role="controlgroup">
-						<legend>Meat Toppings</legend>
-						<input type="checkbox" value="Sausage" name="meat" id="sausage" data-theme="b"/>
-						<label for="sausage">Sausage</label>
-						<input type="checkbox" value="Peperoni" name="meat" id="peperoni"data-theme="b"  />
-						<label for="peperoni">Peperoni</label>
-						<input type="checkbox" value="Canadian Bacon" name="meat" id="cb"data-theme="b"  />
-						<label for="cb">Canadian Bacon</label>
-						<input type="checkbox" value="Beef" name="meat" id="beef" data-theme="b" />
-						<label for="beef">Beef</label>
-					</fieldset>
-				</div>
-				
-				<div data-role="fieldcontain">	
-					<fieldset data-role="controlgroup">
-						<legend>Veggie Toppings</legend>
-						<input type="checkbox" value="Onion" name="veggie" id="onion"data-theme="b"  />
-						<label for="onion">Onion</label>
-						<input type="checkbox" value="Mushrooms" name="veggie" id="mushroom"data-theme="b"  />
-						<label for="mushroom">Mushrooms</label>
-						<input type="checkbox" value="Green Peper" name="veggie" id="gp"data-theme="b"  />
-						<label for="gp">Green Pepper</label>
-						<input type="checkbox" value="Green Olives" name="veggie" id="go"data-theme="b"  />
-						<label for="go">Green Olives</label>
-						<input type="checkbox" value="Black Olives" name="veggie" id="bo" data-theme="b"  />
-						<label for="bo">Black Olives</label>
-					</fieldset>
-				</div>
-				
-				<div data-role="fieldcontain">
-					<input id="submit" type="submit" value="Save Order" data-theme="e"/>
-					<input type="reset" value="Reset"  data-theme="c"/>
-				</div>
-				
-				<a href="#ordererrors" id="ordererrorslink" data-rel="dialog" data-transition="pop">Open Errors</a>
-			</form>
-		</div>
-		<div data-role="footer" data-position="fixed" data-theme="b">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#" id="appB">Application B</a></li>
-					<li><a href="http://Albenturkey.github.com/FS-projects/AppA/index.html" id="github">gh-pages</a></li>
-				</ul>	
-			</div>		
-		</div>
-	</div>
-	
-	<div data-role="dialog" id="ordererrors">
-	
-		<div data-role="header" data-position="fixed" data-theme="b">
-			<h1>Missing Info</h1>
-		</div>
-	
-		<div data-role="content">
-			<ul>
-				<li>Test</li>
-			</ul>	
-		</div>
-	</div>
-	
-	
-
 	<!-- JavaScript under here -->
-	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery.validate.min.js" ></script>
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+	<script type="text/javascript"src="js/libs/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript"src="js/libs/jquery.mobile-1.1.0.min.js"></script> 
+	<script type="text/javascript"src="js/libs/jquery.validate.min.js" ></script>
 	<script src="js/JSON.js"type="text/javascript"></script>
+	<script type="text/javascript" src="js/jsonloader.js"></script>
 	<script src="js/main.js"type="text/javascript"></script>
 
 
