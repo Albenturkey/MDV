@@ -1,180 +1,100 @@
-$(document).ready(function(){
+$('#home').live('pageinit',function(){
+	var toChangePage = function (toPageId) {
+        $.mobile.changePage("#" + toPageId , {
+            type:"post",
+            data:$("form").serialize(),
+            reloadPage:true
+        });
+    };
 
-	var psform = $('#pizzasalesform'),
-		ordererrorslink = $('#ordererrorslink'),
-		crustValue,
-		meatValue,
-		veggieValue,
-		mVal,
-		errMsg = $("#errors")
-	;
+	var crustType = ["Thin","Thick","Pan"];
+	var clearData = $("#clear");
+	clearData.on("click",clearLocal);
 
-	function gEID(x){
-		var theElement = document.getElementById(x);
-		return theElement;
-	}
-	function clearLocal(){
-		if (localStorage.length === 0){
-			alert("There Are No Orders.")
-		}else{
-			localStorage.clear();
-			alert("All Orders Have Been Deleted.")
-			window.location.reload();
-			return false;
-			}
-	}
-	function getSelectedRadio(){
-		var radio = document.forms[0].crust;
-		for (var i=0 ; i < radio.length; i++){
-			if(radio[i].checked) {
-				crustValue = radio[i].value; 
-			}
-		}
-	}	
-	function getMeats(){
-		var x = $("input"[name=meat])
-		mVal = new Array();
-		for(i = 0; i < x.length; i++){
-			if (x[i].checked){
-			mVal.push(x[i].value);
-			meatValue = mVal
-			}
-		}
-		return mVal;
-	}
-	function getVeggieCheckboxValue(){
-		var vToppings = document.forms[0].veggie;
-		vVal = new Array();
-		for(var i = 0; i< vToppings.length; i++){
-			if(vToppings[i].checked){
-				vVal.push(vToppings[i].value);
-				veggieValue = vVal;
-			}
-		}	
-		return vVal;
-	}
+	
+	
+	// Clear Local Storage
+	 var clearLocal = function (){
+        if (localStorage.length === 0){
+            alert("There is nothing to clear");
+        }
+        else{
+            localStorage.clear();
+            alert("All orders have been deleted");
+            window.location.reload();
+            return false;
+        }
+    };
+	
+	
+	
+	// Toggle controls function	
 	function toggleControls(n){
 		switch(n){
-			case "on" :
-				$("#order").css("display", "none");
-				$("#clear").css("display", "inline");
-				$("#display").css("display", "none");
-				$("#github").css("display", "none");
-				$("#appB").css("display", "none");
-
-				//gEID("addNew").style.display = "inline";
+			case "off" :
+				$("#order").hide();
+				$("#clear").show();
+				$("#display").hide();
+				$("#addNew").show();
 				break;
-			case "off":
-				$("#order").css("display", "block");
-				$("#clear").css("display", "inline");
-				$("#display").css("display", "inline");
-				//gEID("addNew").style.display = "none";
-				$("#items").css("display",  "none");
+			case "on":
+				$("#order").show();
+				$("#clear").show();
+				$("#display").show();
+				$("#addNew").hide();
+				$("#items").hide();
 				break;
 			default:
 				return false;
 		}
-	}		
-	function storeData(key){
-		if(!key){
-			var id					= Math.floor(Math.random()*100000001);
-		}else{
-			id = key
-		}	
-		getSelectedRadio();
-		getMeats();
-		getVeggieCheckboxValue();
-		var item    			= {};
-			  item.fname		= ["First Name: " , $("#fname").val];
-		      item.lname		= ["Last Name: "  , $("#lname").val];
-		      item.Address	= ["Address: " , $("#Address").val];
-			  item.date		= ["Date: " , $("#date").val];
-			  item.number	= ["Number of Pizzas: " , $("#number").val];
-			  item.select		= ["Size: " ,gEID("#size").val];
-			  item.crust	= ["Crust Type: " , crustValue];
-			  item.meat		= ["Meat Toppings:" , mVal];
-			  item.veggie		= ["Veggie Toppings: " , veggieValue];
-		localStorage.setItem(id,  JSON.stringify(item));
-		alert("Order Saved");
-	}	
-	function getData(){
-		toggleControls("on");
-		if (localStorage.length ===0){
-			alert ("No Orders in Local Storage so default data was added.");
-			autoFillData();
-		}	
-		var makeDiv = document.createElement("div");
-		makeDiv.setAttribute("id" , "items");
-		var makeList = document.createElement("ul");
-		makeDiv.appendChild(makeList);
-		document.body.appendChild(makeDiv);
-		$("#items").css("display","block");
-		for(var i=0, len = localStorage.length; i<len;i++){
-			var makeLi = document.createElement("li");
-			var linksLi = document.createElement ("li");
-			makeList.appendChild(makeLi);
-			var key = localStorage.key(i);
-			var value = localStorage.getItem(key);
-			var obj = JSON.parse(value);
-			var makeSubList = document.createElement("ul");
-			makeLi.appendChild(makeSubList);
-		//	getImage(obj.select[1], makeSubList);
-			for(var p in obj){
-				var makeSubLi = document.createElement("li");
-				makeSubList.appendChild(makeSubLi);
-				var optSubText = obj[p][0] + " " + obj[p][1];
-				makeSubLi.innerHTML = optSubText;
-				makeSubList.appendChild(linksLi);
+	}				
+	
+	var getSelectedRadio = function (){
+		var radio = $(".crust");
+		for (var i=0 ; i < radio.length; i++){
+			if(radio[i].checked) {
+				crustValue = radio[i].value; 
+				console.log(crustValue);
 			}
-			makeItemLinks(localStorage.key(i), linksLi); 
 		}
 	}
-	function makeItemLinks(key, linksLi){
-	var editLink = document.createElement("a");
-	editLink.href = "#";
-	editLink.key = key;
-	var editText = "Edit Order";
 	
-	editLink.innerHTML = editText;
-	linksLi.appendChild(editLink);
-	// add line break	
-	var breakTag = document.createElement("br");
-	linksLi.appendChild(breakTag);
-	var deleteLink = document.createElement("a");
-	deleteLink.href = "#";
-	deleteLink.key = key;
-	var deleteText = "Delete Order";
-	deleteLink.addEventListener("click" , deleteItem);
-	deleteLink.innerHTML = deleteText;
-	linksLi.appendChild(deleteLink);	
-}
-	function autoFillData(){
-	for(var n in json){
-		var id = Math.floor(Math.random()*100000001);
-		localStorage.setItem(id, JSON.stringify(json[n]));
-	}
-}
-	function editItem(){
-		var value = localStorage.getItem(this.key);
-		var item = JSON.parse(value);
-		toggleControls("off");	
-		$("#fname").val = item.fname[1];
-		$("#lname").val = item.lname[1];
-		$("#address").val = item.Address[1];
-		$("#date").val = item.date[1];
-		$("#number").val = item.number[1];
-	// radio button 	
-		$("input:radio[crust]:checked").val();
-		$("#size").val = item.select[1];
+	
 
+	// Auto Populate local storage
+	function autoFillData(){
+		for(var n in json){
+			var id = Math.floor(Math.random()*100000001);
+			localStorage.setItem(id, JSON.stringify(json[n]));
+		}
+	}
+	
+	// Customer Data function
+		$("#custData").on('click',function(){
+		$("#customerList").empty();
+		for (var i=0, j = localStorage.length; i<j ; i++){
+			var key = localStorage.key(i);
+			var item = JSON.parse(localStorage.getItem(key));
+			console.log();
+			var makeSubList = $("<li></li>");
+			var makSubLi = $("<h3>" + item.fname[1] + " " + item.lname[1] +"</h3>");
+			var makeLink = $("<a href='#popup' data-role='button' data-rel='dialog' data-transition='pop' id= '" + key +"'>Edit</a>");
+			
+			
+			makeLink.html(makSubLi);
+			makeSubList.append(makeLink).appendTo("#customerList");
+			};
+	});
+
+		
 	// checkbox saving	
-		function checkTopping(id,type){
+	/*	function checkTopping(id,type){
 			var checkM = item.meat[1];
 			var checkV = item.veggie[1];
 			var mResult = type.test(checkM);
 			var vResult = type.test(checkV);
 			if(mResult === true || vResult === true){
-			gEID(id).setAttribute("checked", "checked");
+			$(id).attr("checked", "checked");
 			}
 		}
 		checkTopping("sausage",/Sausage/g);
@@ -186,115 +106,167 @@ $(document).ready(function(){
 		checkTopping("gp" ,/Green Pepper/g);
 		checkTopping("bo" ,/Black Olives/g);
 		checkTopping("go" ,/Green Olives/g);
-		var checkM = document.forms[0].meat;
+	*/	
 	// Remove initial listener from the imputable
-		removeEventListener("click" , storeData);
-		 gEID("submit").value = "Edit Order";
-		 var editSubmit = gEID("submit");
-		 editSubmit.addEventListener("click" , valid);
-		 editSubmit.key = this.key;
-			
-	}		
-	function deleteItem(){
+	
+		
+	
+		$("#sizeData").on('click',function(){
+		$("#sizeList").empty();
+		for (var i=0, j = localStorage.length; i<j ; i++){
+			var key = localStorage.key(i);
+			var item = JSON.parse(localStorage.getItem(key));
+			console.log(item);
+			var makeSubList = $("<li></li>");
+			var makSubLi = $("<h3>" + item.select[0] +" " + item.select[1] +"</h3>");
+			var makeLink = $("<a href='#' id= '" + key +"'>Edit</a>");
+			makeLink.on('click' , function(){
+				console.log("This is my key: " + this.id);
+			});
+			makeLink.html(makSubLi);
+			makeSubList.append(makeLink).appendTo("#sizeList");
+			};
+	});
+		$("#crustData").on('click',function(){
+		$("#curstList").empty();
+		for (var i=0, j = localStorage.length; i<j ; i++){
+			var key = localStorage.key(i);
+			var item = JSON.parse(localStorage.getItem(key));
+			console.log(item);
+			var makeSubList = $("<li></li>");
+			var makSubLi = $("<h3>" + item.crust[1] +"</h3>");
+			var makeLink = $("<a href='#' id= '" + key +"'>Edit</a>");
+			makeLink.on('click' , function(){
+				console.log("This is my key: " + this.id);
+			});
+			makeLink.html(makSubLi);
+			makeSubList.append(makeLink).appendTo("#crustList");
+			};
+	});
+		$("#meatData").on('click',function(){
+		$("#meatList").empty();
+		for (var i=0, j = localStorage.length; i<j ; i++){
+			var key = localStorage.key(i);
+			var item = JSON.parse(localStorage.getItem(key));
+			console.log(item);
+			var makeSubList = $("<li></li>");
+			var makSubLi = $("<h3>" + item.meat[1] +"</h3>");
+			var makeLink = $("<a href='#' id= '" + key +"'>Edit</a>");
+			makeLink.on('click' , function(){
+				console.log("This is my key: " + this.id);
+			});
+			makeLink.html(makSubLi);
+			makeSubList.append(makeLink).appendTo("#meatList");
+			};
+	});
+	$("#veggieData").on('click',function(){
+		$("#veggieList").empty();
+		for (var i=0, j = localStorage.length; i<j ; i++){
+			var key = localStorage.key(i);
+			var item = JSON.parse(localStorage.getItem(key));
+			console.log(item);
+			var makeSubList = $("<li></li>");
+			var makSubLi = $("<h3>" + item.veggie[1] +"</h3>");
+			var makeLink = $("<a href='#' id= '" + key +"'>Edit</a>");
+			makeLink.on('click' , function(){
+				console.log("This is my key: " + this.id);
+			});
+			makeLink.html(makSubLi);
+			makeSubList.append(makeLink).appendTo("#veggieList");
+			};
+	});
+	
+/*	var getOrders = function(){
+		toggleList("off");
+		if (localStorage.length === 0){
+			alert("Loading Data");
+			autoFillData();
+		}
+		var makeDiv = $('#seeData')
+		makeDiv.attr = $("data-role", "content");
+		makeDiv.append("<ul id=" + "datalist" + "></ul>");
+		var makeList = $(#dataList);
+		makeList.attr({dataRole: "listview",dataInset: "true", dataFilter: "true"
+            });
+		for (var i=0, j = localStorage.length; i<j ; i++){
+			var makeLi = $("<li></li>");
+			var linksLi = $("<li></li>");
+			makeList.append(makeLi);
+			var keyVal = localStorage.key(i);
+            var value = localStorage.getItem(keyVal);
+            var obj = JSON.parse(value); 	               
+			var makeSubList = $('<ul></ul>');
+            makeLi.append(makeSubList);
+            for (var j in obj){
+                 var optSubText = obj[j][0]+" "+obj[j][1];                   //separate the label with the value
+                 var makeSubli = $("<li></li>");
+                 console.log(obj);
+                 makeSubli.append(optSubText);
+                 makeSubList.append(makeSubli);
+                 makeSubli.append(linksLi);
+           }
+		 makeItemLinks(localStorage.key(i), linksLi);
+ 		    }
+        }
+    };
+
+	
+	var makeItemsLink = function(key, makeSubList){
+		var editLink = $("<a>");
+		editLink.href="#";
+		editLink.key = key;
+		var editText = "Edit Order";
+		editLink.append(editText);
+		makeSubList.appendTo(editLink)
+		var deleteLink = $("<a>");
+		deleteLink.href="#"
+		deleteLink.key = key;
+		var deleteText ="Delete Order";
+		deleteLink.on('click', deleteItem);
+		deleteLink.append(deleteText);
+		makeSubList.appendTo(deleteLink);
+		};
+	*/	
+	var deleteItem = function(){
 		var ask = confirm("Are you sure you want to delete this order");
-		if(ask){
+		if (ask){
 			localStorage.removeItem(this.key);
-			alert("Order was deleted.");
-			window.location.reload();
+			alert("Order was deleted");
 		}else{
 			alert("Order was not deleted.");
-		}		
-}
-	function valid(e){
-		var getfname = $("#fname");
-		var getlname = $("#lname");
-		var getAddress = $("#Address");
-		var getdate = $("#date");
-		var getnumber = $("#number");
-		var getselect = $("#size");
-		
-		
-	// reset errors
-		errMsg.innerHTML = "" ;
-		$("#fname").css("border", "1px");
-		$("#lname").css("border", "1px");
-		$("#Address").css("border", "1px");
-		$("#date").css("border", "1px");
-		$("#number").css("border", "1px");
-		$("#size").css("border", "1px");
-		
-		var messageAry = [];	
-		
-	// First Name Validation 
-		if ($("#fname").val === ""){
-			var fnameError = "Please enter a first name.";
-			getfname.style.border = "1px solid red";
-			messageAry.push(fnameError);	
-	}	
-	// Last Name Validation
-		if ($("#lname").val === ""){
-			var lnameError = "Please enter a last name.";
-			getlname.style.border = "1px solid red";
-			messageAry.push(lnameError);	
-	}
-	// Address Validation
-		if ($("#Address").val === ""){
-			var addressError = "Please enter an Adddress.";
-			getAddress.style.border = "1px solid red";
-			messageAry.push(addressError);
-	}
-	// Date Validation
-		if ($("#date").val === ""){
-			var dateError = "Please enter an order date.";
-			getdate.style.border = "1px solid red";
-			messageAry.push(dateError);
 		}
-	// Number of Pizzas Validation
-		if ($("#number").val < 1 ){
-			var numbErerror = "Please enter the number of this type of pizza.";
-			messageAry.push(numbErerror);	
-		}
-	//Crust size Validation
-		if ($("#size").val === "--Choose the size of your pizza--"){
-			var selectError = "Please choose a size.";
-			getselect.style.border = "1px solid red";
-			
-			messageAry.push(selectError);	
-			}	
-	// If there are errors display this
-		if (messageAry.length >= 1){
-			for (var i = 0, j = messageAry.length; i < j; i++){
-				var txt = document.createElement("li");
-				txt.innerHTML = messageAry[i];
-				errMsg.appendChild(txt);
-				alert("Please  Fill Out Required Fields");
-			} 
-			e.preventDefault();
-			return false;	
+	}			
+	
+	
+// Get Radio function
+	var getRadio = function (){
+		console.log($('input:radio[class=crust]:checked').val());
+	
+	};
+
+// Store Data function
+	var storeData = function(key){
+		if(!key){
+			var id					= Math.floor(Math.random()*100000001);
 		}else{
-			storeData(this.key);
-		}					
-	}
-	psform.validate({
-		invalidHandler: function(form, validator){
-			ordererrorslink.click();
-			var html = '';
-			for (var key in validator.submitted){
-				var label = $('label[for^="'+ key +'"]').not('[generated]');
-				var legend = label.closest('fieldset').find('.ui-controlgroup-label');
-				var fieldName = legend.length ? legend.text() : label.text();
-				html += '<li>'+ fieldName +'</li>';
-			};
-			$("#ordererrors ul").html(html);
-		},
-		submitHandler:	function(){
-			var data = psform.serializeArray();
-			parsePizzaForm(data);
-		}
-	});
-	$("#display").bind("click",getData);
-	$("#clear").bind("click",clearLocal);
-	$("#submit").bind("click",valid);
-	
-	
+			id = key
+		}	
+		
+		var item    			= {};
+			  item.fname		= ["First Name: " , ($("#fname").val())];
+		      item.lname		= ["Last Name: "  , ($("#lname").val())];
+		      item.Address	= ["Address: " , ($("#Address").val())];
+			  item.date		= ["Date: " , ($("#date").val())];
+			  item.number	= ["Number of Pizzas: " , ($("#number").val())];
+			  item.select		= ["Size: " ,($("#size").val())];
+			  item.crust	= ["Crust Type: " , getRadio()];
+		//	  item.meat		= ["Meat Toppings:" , mVal];
+	//		  item.veggie		= ["Veggie Toppings: " , veggieValue];
+		localStorage.setItem(id,  JSON.stringify(item));
+		alert("Order Saved");
+		console.log($("#fname").val());
+	}	
+
+
+
 });	
