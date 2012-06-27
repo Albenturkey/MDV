@@ -4,6 +4,19 @@ function gEID(x){
 		return theElement;
 	}
 
+function clearLocal(){
+		if (localStorage.length === 0){
+			alert("There Are No Orders.")
+		}else{
+			localStorage.clear();
+			alert("All Orders Have Been Deleted.")
+			window.location.reload();
+			return false;
+			}
+	}
+var parsePizzaForm = function(data){
+
+};
 
 $(document).ready(function(){
 
@@ -29,35 +42,34 @@ $(document).ready(function(){
 		}
 	
 	});
-	function toggleControls(n){
+
+});
+	
+	
+
+
+function toggleControls(n){
 		switch(n){
 			case "on" :
-				$("#order").css("display","none");
-				$("#clear").css("display","inline");
-				$("#display").css("display","none");
-				$("#github").css("display","none");
-				$("#appB").css("display","none");
+				gEID("order").style.display = "none";
+				gEID("clear").style.display = "inline";
+				gEID("display").style.display = "none";
+				gEID("github").style.display = "none";
+				gEID("appB").style.display = "none";
+
+				//gEID("addNew").style.display = "inline";
 				break;
 			case "off":
-				$("#order").css("display","block");
-				$("#clear").css("display","inline");
-				$("#display").css("display","inline");
-				$("#items").css("display", "none");
+				gEID("order").style.display = "block";
+				gEID("clear").style.display = "inline";
+				gEID("display").style.display = "inline";
+				//gEID("addNew").style.display = "none";
+				gEID("items").style.display =  "none";
 				break;
 			default:
 				return false;
 		}
 	}		
-function clearLocal(){
-		if (localStorage.length === 0){
-			alert("There Are No Orders.")
-		}else{
-			localStorage.clear();
-			alert("All Orders Have Been Deleted.")
-			window.location.reload();
-			return false;
-			}
-	}
 
 function storeData(key){
 		if(!key){
@@ -65,13 +77,16 @@ function storeData(key){
 		}else{
 			id = key
 		}	
+		getSelectedRadio();
+		getMeats();
+		getVeggieCheckboxValue();
 		var item    			= {};
-			  item.fname		= ["First Name: " , $("#fname").value];
-		      item.lname		= ["Last Name: "  , $("#lname").value];
-		      item.Address	= ["Address: " , $("#Address").value];
-			  item.date		= ["Date: " , $("#date").value];
-			  item.number	= ["Number of Pizzas: " , $("#number").value];
-			  item.select		= ["Size: " ,$("#size").value];
+			  item.fname		= ["First Name: " , gEID("fname").value];
+		      item.lname		= ["Last Name: "  , gEID("lname").value];
+		      item.Address	= ["Address: " , gEID("Address").value];
+			  item.date		= ["Date: " , gEID("date").value];
+			  item.number	= ["Number of Pizzas: " , gEID("number").value];
+			  item.select		= ["Size: " ,gEID("size").value];
 			  item.crust	= ["Crust Type: " , crustValue];
 			  item.meat		= ["Meat Toppings:" , mVal];
 			  item.veggie		= ["Veggie Toppings: " , veggieValue];
@@ -200,13 +215,12 @@ function deleteItem(){
 			alert("Order was not deleted.");
 		}		
 }
-$("#display").bind("click",getData);
-$("#clear").bind("click",clearLocal);
-$("#submit").bind("click",storeData);
 
-console.log($("#crust").value);
-
-
-
-
-});	
+var displayLink = gEID("display");
+	displayLink.addEventListener("click" , getData);
+var clearLink = gEID("clear");
+	clearLink.addEventListener("click" , clearLocal);
+var order = gEID("submit");
+	order.addEventListener("click");
+	
+	
