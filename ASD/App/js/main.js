@@ -9,7 +9,6 @@ $('#home').live('pageinit',function(){
 
 	var crustType = ["Thin","Thick","Pan"];
 	var clearData = $("#clear");
-	clearData.on("click",clearLocal);
 
 	
 	
@@ -26,7 +25,7 @@ $('#home').live('pageinit',function(){
         }
     };
 	
-	
+	clearData.on("click",clearLocal);
 	
 	// Toggle controls function	
 	function toggleControls(n){
