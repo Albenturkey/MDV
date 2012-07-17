@@ -1,0 +1,50 @@
+<!doctype html>  
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	
+	<title>Pizza Sales</title>
+	
+	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Mobile IE needs ClearType for smoothing fonts -->
+	<meta http-equiv="cleartype" content="on">
+	
+	<!-- StyleSheets under here -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	
+	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
+
+</head>
+<body>
+		
+	<div data-role="page" id="home">	
+		<div data-role="header" data-position="fixed">
+			
+			<h1>Customers</h1>
+		</div>
+		<div data-role="content">
+			<ul id="customerlist" data-role="listview">
+			</ul>
+			<a href="#" id="customerButton" data-role="button">Customer List / json</a>
+			<a href="#" id="xmlData" data-role="button">xml</a>
+			<a href="#" id="csvData" data-role="button">csv</a>
+			
+			
+		</div>
+		<div data-role="footer" data-position="fixed">
+		
+		</div>
+
+
+
+	<!-- JavaScript under here -->
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+	<script type="text/javascript" src="js/test.js"></script>
+</body>
+</html>
