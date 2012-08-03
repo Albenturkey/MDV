@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var cust = function(){
 		$.ajax({
-			"url":"json.js",
+			"url":"_view/customers",
 			"dataType":"json",
 			"success":function(data){
 				$.each(data.rows, function(index, customer){
@@ -22,7 +22,7 @@ $(document).ready(function(){
 	$('#customerButton').on('click',cust)
 
 			
-//  project 2 make up
+
 //xml
 
 	var parseXML = function(xml){
