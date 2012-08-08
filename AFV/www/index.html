@@ -9,42 +9,48 @@
 	<meta name="robots" content="index, follow"/>
 	<meta name="viewport" content="user-scalable=no, width=device-width"/>
 	<title>Pizza Maker</title>	<link href="style.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
 	<link href="style.css" rel="stylesheet"/>
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 </head>
 <body>
-	<header>
-		<h1> The Pizza Maker Launch Page</h1>
-	</header>
-		<div id="app">
-			<fieldset>	
+	<div data-role="page">
+		<div data-role="header">
+			<h1> The Pizza Maker Launch Page</h1>
+		</div>
+		<div data-role="content">
+			<div id="app">
+				<fieldset>	
 				<legend>App Examples</legend>
-					<ul>
+					<ul data-role="listview" data-inset="true">
 						<li><a id="crud" href="additem.html"> CRUD </a></li>
 					</ul>
 			</fieldset>		
-		</div>
-		<div id="features">
-			<fieldset>
+			</div>
+			<div id="features">
+				<fieldset>
 				<legend> IOS and Android Native Features</legend>
-				<ul> 
-					<li><a id="alert" href="#"> Alert</a></li>
-					<li> <a id="geo" href="#">Geo</a></li>
-					<li><a id="acceleramator" href="#"> Acceleramator</a></li>
-				</ul>
-			</fieldset>
+					<ul data-role="listview" data-inset="true"> 
+						<li><a id="alert" href="#"> Alert</a></li>
+						<li> <a id="geo" href="#">Geo</a></li>
+						<li><a id="acceleramator" href="#"> Acceleramator</a></li>
+					</ul>
+				</fieldset>
+			</div>
+			<div id="devinfo">
+				<fieldset>
+					<legend>Developer Info</legend>
+					<ul data-role="listview" data-inset="true"> 
+						<li><a id="git" href="https://github.com/Albenturkey/MDV">Github Repo</li>
+						<li><a id="ghpages" href="#">GH-Pages</li>
+					</ul>
+				</fieldset>
+			</div>	
 		</div>
-		<div id="devinfo">
-			<fieldset>
-				<legend>Developer Info</legend>
-				<ul > 
-					<li> Alan Sherek</li>
-					<li>AFV1208</li>
-					<li><a id="git" href="https://github.com/Albenturkey/MDV">Github Repo</li>
-					<li><a id="ghpages" href="#">GH-Pages</li>
-				</ul>
-			</fieldset>
+		<div data-role="footer">
+			<p>Alan Sherek ----------- AFV1208</p>
 		</div>	
-			
 	
 </body>
 </html>
