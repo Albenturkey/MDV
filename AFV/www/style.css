@@ -1,0 +1,84 @@
+
+/*Alan Sherek
+   Project 3
+   VFW 0212
+   CSS Stylesheet */
+
+h1 {
+	text-align: center;
+	color: #6666FF;
+	text-shadow: 5px 5px white;
+	font-family: Helvetica, Geneva, Arial, width:250px;
+	padding: 10px;
+	border: 5px solid #6699FF;
+	border-style: inset;
+	margin: 10px;
+	background-color: silver;
+}
+
+body {
+	background-color: #F0F0F0 ;
+}
+
+fieldset {
+	border: 5px solid #6699FF;
+	background-color: silver;
+	border-style: inset;
+}
+
+legend {
+	color: black;
+	font-size: 150%;
+	font-style: italic;
+	text-align: center;
+	border: 2px solid #6699FF;
+	border-style: outset;
+	background-color: #33CCFF;
+}
+
+a:hover {
+	color: green;
+	outline: none;
+}
+
+nav {
+	text-align: center;
+}
+
+
+
+li ul {
+	text-align: center;
+	
+	border: 1px solid;
+	border-collapse: :separate;
+	text-transform: capitalize;
+}
+
+
+label {
+	text-align: left;
+	height: 50;: 100px;
+	display: block;
+}
+
+input {
+	text-align: center;
+	display: inline;
+}
+ul {
+	font-weight: bold;
+}
+form {
+	border: 1px solid;
+	padding: 5px;
+	background-color: #E0E0E0;
+	}
+input[type="submit"] { 
+		width: 200px;
+		height: 40px;
+		color: #6666FF;
+	 }
+#errors {
+		color: red;
+		}	 

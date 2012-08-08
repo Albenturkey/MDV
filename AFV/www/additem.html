@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- Web App Part 4 -->
+<!-- Alan Sherek -->
+<!-- VFW0212 -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="My add item page" />
+		<meta name="keywords" content="HTML5, Visual Frameworks, Full Sail University" />
+		<meta name="robots" content="index, follow" />
+		<meta name="viewport" content="user-scalable=no, width=device-width" />
+		<title>Create Your Pizza</title>
+		<link href="style.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<header>
+			<h1>Pizza Maker</h1>
+		</header>
+		<nav>
+			<a href="#" id="clear">Clear Orders</a>
+			<a href="#" id="display">Display Order</a>
+			<a href="additem.html" id="addNew" style="display:none;">Add New Order</a>
+		</nav>
+		<form action="#" method="post" id= "order">
+			<fieldset>
+		<!-- Customers Information -->
+				<legend>Customer Info</legend>
+				<ul id="errors"></ul> 
+				<ul>
+					<li><label for="First Name">First Name:</label><input type="text" id="fname" /></li>
+					<li><label for="Last Name">Last Name:</label><input type="text" id="lname" /></li>
+					<li><label for="Address">Address.:</label><textarea id="Address"></textarea></li>	
+					<li><label for="Date">Date:</label><input type="datetime" id="date" /></li>
+				<ul>	
+			</fieldset>
+			<fieldset>
+		<!-- Pizza Order -->
+				<legend>Build Your Order</legend>
+				<ul >
+					<li>Number Of Pizzas<input type="range" name="points" min="1" max="10" id="number"/></li>
+					<li id="select"><label for = "size">Choose the size of your pizza</label><br /></li>
+					<li>Crust:
+						<ul>
+							<li><input type="radio" value="thick" id="thick" name="crust" /><label for="thick">Thick</label></li>
+							<li><input type="radio" value="thin" id="thin" name="crust" /><label for="thin">Thin</label></li>
+							<li><input type="radio" value="pan" id="pan" name="crust" /><label for="pan">Pan</label></li>
+						</ul>
+					</li>
+					</li>
+					<li>Meat Toppings
+						<ul>
+							<li><input type="checkbox" value="Sausage" id="sausage" name="meat" /><label for="sausage">Sausage</label></li>
+							<li><input type="checkbox" value="Peperoni" id="peperoni" name="meat" /><label for="peperoni">Peperoni</label></li>
+							<li><input type="checkbox" value="Canadian Bacon" id="cb" name="meat" /><label for="cb">Canadian Bacon</label></li>
+							<li><input type="checkbox" value="Beef" id="beef" name="meat" /><label for="beef">Beef</label></li>
+						</ul>
+					</li>
+					<li>Veggie Toppings
+						<ul>
+							<li><input type="checkbox" value="Onion" id="onion" name="veggie" /><label for="onion">Onion</label></li>
+							<li><input type="checkbox" value="Mushroom" id="mushroom" name="veggie" /><label for="mushroom">Mushroom</label></li>
+							<li><input type="checkbox" value="Green Pepper" id="gp" name="veggie" /><label for="gp">Green Pepper</label></li>
+							<li><input type="checkbox" value="Black Olives" id="bo" name="veggie" /><label for="bo">Black olives</label></li>
+							<li><input type="checkbox" value="Green Olives" id="go" name="veggie" /><label for="go">Green Olives</label></li>
+						</ul>
+					</li>
+				</ul>
+			</fieldset>
+			<input type="submit" value="Place Your Order" id="submit"/><br/>
+		</form>
+		<script src="js/JSON.js "type="text/javascript"></script>
+		<script src="js/main.js" type="text/javascript"></script>
+	</body>
+</html>
